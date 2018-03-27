@@ -3,7 +3,13 @@ import "./Header.css";
 
 class Header extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <h1>Coffee Runs Through Me</h1>
+        <button>Sign In</button>
+        <button>Sign Up</button>
+      </div>
+    );
   }
 }
 
