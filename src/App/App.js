@@ -8,13 +8,23 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
+      <div className="App">
+        <nav>
+          <Link to="/">Main</Link>
+          <Link to="/main">Home</Link>
+        </nav>
+        <div>
+          <Switch>
+            <Route path="/" />
+            <Route path="/main" />
+          </Switch>
+        </div>
+        <div>
           <Header />
           <Table />
           <Footer />
         </div>
-      </Router>
+      </div>
     );
   }
 }
