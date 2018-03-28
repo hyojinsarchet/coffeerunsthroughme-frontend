@@ -85,15 +85,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <nav>
-          <Header />
-        </nav>
-        <div>
-          <div className="image">
-            <img src="../../images/coffee.jpg" alt="coffee" />
-          </div>
-          <Switch>
+      <Switch>
+        <div className="app">
+          <nav>
+            <Header />
+          </nav>
+          <div>
+            <div className="image">
+              <img src="../../images/coffee.jpg" alt="coffee" />
+            </div>
+
             <Route
               exact
               path="/"
@@ -145,11 +146,11 @@ class App extends Component {
                 );
               }}
             />
-          </Switch>
+          </div>
+          <Table />
+          <Footer />
         </div>
-        <Table />
-        <Footer />
-      </div>
+      </Switch>
     );
   }
 }
