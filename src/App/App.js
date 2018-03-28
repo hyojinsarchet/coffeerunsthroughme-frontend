@@ -95,6 +95,9 @@ class App extends Component {
         </div>
         <div>
           <Header />
+          <div className="image">
+            <img src="../../images/coffee.jpg" alt="coffee" />
+          </div>
           <Table />
           <Footer />
         </div>
