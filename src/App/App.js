@@ -51,6 +51,8 @@ class App extends Component {
     });
   }
 
+  handleOnChange(e) {}
+
   handleSignUp(e) {
     e.preventDefault();
     axios
@@ -145,7 +147,6 @@ class App extends Component {
               }}
             />
           </div>
-          <Table />
           <Footer />
         </div>
       </Switch>

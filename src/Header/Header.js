@@ -30,6 +30,7 @@ class Header extends Component {
           <Link key={5} to="/login" className="nav">
             Login
           </Link>
+<<<<<<< HEAD
           <Link key={6} to="/signup" className="nav">
             Signup
           </Link>
@@ -38,6 +39,18 @@ class Header extends Component {
       );
     }
     return <div>{nav}</div>;
+=======
+
+          <Link to="/signup" className="nav">
+            Signup
+          </Link>
+          <Link to="/main" className="nav">
+            Main
+          </Link>
+        </div>
+      </div>
+    );
+>>>>>>> aiyen
   }
 }
 
