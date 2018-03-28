@@ -101,6 +101,59 @@ class App extends Component {
           <Table />
           <Footer />
         </div>
+        <Link to="/">Home</Link>
+        <Link to="/main" />
+        <Link to="/signup">Signup</Link>
+        <Link to="/login">Login</Link>
+        <Header />
+        <Switch>
+          <Route
+            path="/main"
+            render={() => {
+              return <Table isLoggedIn={this.state.isLoggedIn} />;
+            }}
+          />
+          <Route
+            path="/signup"
+            render={props => {
+              return (
+                <Signup
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleSignUp={this.handleSignUp}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/logout"
+            render={props => {
+              return (
+                <Signout
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleLogOut={this.handleLogOut}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/login"
+            render={props => {
+              return (
+                <Signin
+                  {...props}
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleLogIn={this.handleLogIn}
+                />
+              );
+            }}
+          />
+        </Switch>
+        <Footer />
+        >>>>>>> Kevin-Develop >>>>>>> 45f4ce0a231b328f5aac5493a1d1a2de60458fcf
       </div>
     );
   }
