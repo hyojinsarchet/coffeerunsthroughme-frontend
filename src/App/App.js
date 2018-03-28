@@ -85,11 +85,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Link to="/">Home</Link>
-        <Link to="/main" />
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
+      <div className="app">
+        <nav>
+          <Link to="/">Main</Link>
+          <Link to="/main">Home</Link>
+        </nav>
+        <div>
+          <Switch>
+            <Route path="/" />
+            <Route path="/main" />
+          </Switch>
+        </div>
+        <div>
+          <Header />
+          <div className="image">
+            <img src="../../images/coffee.jpg" alt="coffee" />
+          </div>
+          <Table />
+          <Footer />
+        </div>
+
         <Header />
         <Switch>
           <Route
@@ -98,7 +113,7 @@ class App extends Component {
               return <Table isLoggedIn={this.state.isLoggedIn} />;
             }}
           />
-          <Route
+          {/* <Route
             path="/signup"
             render={props => {
               return (
@@ -135,7 +150,7 @@ class App extends Component {
                 />
               );
             }}
-          />
+          /> */}
         </Switch>
         <Footer />
       </div>
