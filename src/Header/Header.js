@@ -13,11 +13,12 @@ class Header extends Component {
           <Link to="/login" className="nav">
             Login
           </Link>
+
           <Link to="/signup" className="nav">
             Signup
           </Link>
           <Link to="/main" className="nav">
-            Test
+            Main
           </Link>
         </div>
       </div>

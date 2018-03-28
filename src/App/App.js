@@ -143,7 +143,6 @@ class App extends Component {
               }}
             />
           </div>
-          <Table />
           <Footer />
         </div>
       </Switch>
