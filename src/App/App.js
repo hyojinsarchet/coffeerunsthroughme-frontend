@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import axios from "axios";
-import Signout from "../authentication/signout.js";
-import Signin from "../authentication/signin.js";
-import Signup from "../authentication/signup.js";
 
 class App extends Component {
   constructor() {
@@ -91,7 +88,6 @@ class App extends Component {
         <Link to="/signup">Signup</Link>
         <Link to="/login">Login</Link>
         <Header />
-
         <Switch>
           <Route
             path="/main"

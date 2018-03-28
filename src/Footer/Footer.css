@@ -1,0 +1,13 @@
+.footer {
+  background: #d7c0aa;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  font-family: "Special Elite", cursive;
+}
+
+.footer p {
+  color: #4d2713;
+  padding: 5px;
+  font-size: 20px;
+}

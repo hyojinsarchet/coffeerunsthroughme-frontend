@@ -1,14 +1,16 @@
 .header {
-  background-color: #ccc;
-  height: 60px;
+  background: #d7c0aa;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
-.title {
-  float: left;
-  font-size: 30px;
-  margin: 10px auto auto 30px;
+.logo {
+  font-family: "Special Elite", cursive;
 }
 
-.button {
-  text-align: right;
+.logo a {
+  text-decoration: none;
+  color: #4d2713;
+  padding: 15px;
 }
