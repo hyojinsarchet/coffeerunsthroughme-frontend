@@ -3,15 +3,22 @@
   position: fixed;
   top: 0px;
   width: 100%;
-  text-decoration: none;
+  font-family: "Special Elite", cursive;
+  padding: 20px 15px 10px 5px;
 }
 
-.logo a {
-  text-decoration: none;
+.logo {
   color: #4d2713;
-  padding: 15px;
+  padding: 10px 5px 10px 0;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .nav {
-  background: white;
+  text-decoration: none;
+  float: right;
+  padding-right: 20px;
+  padding-top: 5px;
+  color: #4d2713;
 }

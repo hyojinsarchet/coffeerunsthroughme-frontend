@@ -10,9 +10,15 @@ class Header extends Component {
           <Link to="/" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link to="/main">Test</Link>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="nav">
+            Login
+          </Link>
+          <Link to="/signup" className="nav">
+            Signup
+          </Link>
+          <Link to="/main" className="nav">
+            Test
+          </Link>
         </div>
       </div>
     );

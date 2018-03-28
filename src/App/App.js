@@ -91,10 +91,6 @@ class App extends Component {
             <Header />
           </nav>
           <div>
-            <div className="image">
-              <img src="../../images/coffee.jpg" alt="coffee" />
-            </div>
-
             <Route
               exact
               path="/"
