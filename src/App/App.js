@@ -82,8 +82,18 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
+      <div className="App">
+        <nav>
+          <Link to="/">Main</Link>
+          <Link to="/main">Home</Link>
+        </nav>
+        <div>
+          <Switch>
+            <Route path="/" />
+            <Route path="/main" />
+          </Switch>
+        </div>
+        <div>
           <Header />
           <div className="image">
             <img src="../../images/coffee.jpg" alt="coffee" />
@@ -91,7 +101,7 @@ class App extends Component {
           <Table />
           <Footer />
         </div>
-      </Router>
+      </div>
     );
   }
 }
