@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
@@ -69,6 +69,8 @@ class App extends Component {
 
   handleLogIn(e) {
     e.preventDefault();
+    console.log(e.target);
+
     axios
       .post("http://localhost:3001/users/login", {
         email: this.state.email,
@@ -88,7 +90,7 @@ class App extends Component {
       <Switch>
         <div className="app">
           <nav>
-            <Header />
+            <Header isLoggedIn={this.state.isLoggedIn} />
           </nav>
           <div>
             <Route
