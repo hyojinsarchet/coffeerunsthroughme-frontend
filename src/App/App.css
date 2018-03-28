@@ -1,5 +1,10 @@
 .app {
   height: 100%;
+  background-image: url(/images/coffee.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-origin: content-box;
 }
 
 .image {

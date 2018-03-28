@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import "./authentication.css";
 
 class Signin extends Component {
   render() {
     return (
-      <div>
-        <h2>Sign In</h2>
-        <form>
+      <div className="signin">
+        <h2 className="auth-header">Sign In</h2>
+        <form className="authentication">
           <div>
             <label htmlFor="email">Email</label>
             <input type="text" name="email" onChange={this.props.handleInput} />
@@ -13,7 +14,7 @@ class Signin extends Component {
           <div>
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
               onChange={this.props.handleInput}
             />
