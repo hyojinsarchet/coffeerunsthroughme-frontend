@@ -85,75 +85,72 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <nav>
-          <Link to="/">Main</Link>
-          <Link to="/main">Home</Link>
-        </nav>
-        <div>
-          <Switch>
-            <Route path="/" />
-            <Route path="/main" />
-          </Switch>
-        </div>
-        <div>
-          <Header />
-          <div className="image">
-            <img src="../../images/coffee.jpg" alt="coffee" />
+      <Switch>
+        <div className="app">
+          <nav>
+            <Header />
+          </nav>
+          <div>
+            <div className="image">
+              <img src="../../images/coffee.jpg" alt="coffee" />
+            </div>
+
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return <Header />;
+              }}
+            />
+            <Route
+              path="/main"
+              render={() => {
+                return <Table isLoggedIn={this.state.isLoggedIn} />;
+              }}
+            />
+            <Route
+              path="/signup"
+              render={props => {
+                return (
+                  <Signup
+                    {...props}
+                    isLoggedIn={this.state.isLoggedIn}
+                    handleInput={this.handleInput}
+                    handleSignUp={this.handleSignUp}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/logout"
+              render={props => {
+                return (
+                  <Signout
+                    {...props}
+                    isLoggedIn={this.state.isLoggedIn}
+                    handleLogOut={this.handleLogOut}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/login"
+              render={props => {
+                return (
+                  <Signin
+                    {...props}
+                    isLoggedIn={this.state.isLoggedIn}
+                    handleInput={this.handleInput}
+                    handleLogIn={this.handleLogIn}
+                  />
+                );
+              }}
+            />
           </div>
           <Table />
           <Footer />
         </div>
-
-        <Header />
-        <Switch>
-          <Route
-            path="/main"
-            render={() => {
-              return <Table isLoggedIn={this.state.isLoggedIn} />;
-            }}
-          />
-          {/* <Route
-            path="/signup"
-            render={props => {
-              return (
-                <Signup
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleSignUp={this.handleSignUp}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/logout"
-            render={props => {
-              return (
-                <Signout
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleLogOut={this.handleLogOut}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/login"
-            render={props => {
-              return (
-                <Signin
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleLogIn={this.handleLogIn}
-                />
-              );
-            }}
-          /> */}
-        </Switch>
-        <Footer />
-      </div>
+      </Switch>
     );
   }
 }

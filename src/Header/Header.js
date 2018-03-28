@@ -7,11 +7,10 @@ class Header extends Component {
     return (
       <div>
         <div className="header">
-          <h1 className="logo">
-            <a href="/">Coffee Runs Through Me</a>
-          </h1>
-          <Link to="/">Home</Link>
-          <Link to="/main" />
+          <Link to="/" className="logo">
+            Coffee Runs Through Me
+          </Link>
+          <Link to="/main">Test</Link>
           <Link to="/signup">Signup</Link>
           <Link to="/login">Login</Link>
         </div>
