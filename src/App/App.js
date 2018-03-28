@@ -101,10 +101,7 @@ class App extends Component {
           <Table />
           <Footer />
         </div>
-        <Link to="/">Home</Link>
-        <Link to="/main" />
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
+
         <Header />
         <Switch>
           <Route
@@ -113,7 +110,7 @@ class App extends Component {
               return <Table isLoggedIn={this.state.isLoggedIn} />;
             }}
           />
-          <Route
+          {/* <Route
             path="/signup"
             render={props => {
               return (
@@ -150,10 +147,9 @@ class App extends Component {
                 />
               );
             }}
-          />
+          /> */}
         </Switch>
         <Footer />
-        >>>>>>> Kevin-Develop >>>>>>> 45f4ce0a231b328f5aac5493a1d1a2de60458fcf
       </div>
     );
   }
