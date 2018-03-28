@@ -8,7 +8,7 @@ class Header extends Component {
     if (this.props.isLoggedIn) {
       nav.push(
         <div>
-          <Link key={2} to="/main" className="logo">
+          <Link key={2} to="/" className="logo">
             Coffee Runs Through Me
           </Link>
           <Link key={3} to="/main" className="nav">
@@ -23,7 +23,7 @@ class Header extends Component {
     } else {
       nav.push(
         <div>
-          <Link key={7} to="/main" className="logo">
+          <Link key={7} to="/" className="logo">
             Coffee Runs Through Me
           </Link>
           <Link key={5} to="/login" className="nav">
@@ -37,7 +37,6 @@ class Header extends Component {
       );
     }
     return <div className="header">{nav}</div>;
-
   }
 }
 

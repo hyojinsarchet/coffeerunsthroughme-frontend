@@ -42,6 +42,7 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
+    let isLoggedIn = this.state.isLoggedIn;
 
     localStorage.clear();
   }
@@ -97,13 +98,6 @@ class App extends Component {
           </nav>
           <div>
             <Route
-              exact
-              path="/main"
-              render={() => {
-                return <Header />;
-              }}
-            />
-            <Route
               path="/main"
               render={() => {
                 return <Table isLoggedIn={this.state.isLoggedIn} />;
@@ -112,42 +106,51 @@ class App extends Component {
             <Route
               path="/signup"
               render={props => {
-                return (
-                  <Signup
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleInput={this.handleInput}
-                    handleSignUp={this.handleSignUp}
-                  />
-                );
-                if (this.state.isLoggedIn === true) {
-                  <Redirect to="/main" />;
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signup
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleInput={this.handleInput}
+                      handleSignUp={this.handleSignUp}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
                 }
               }}
             />
             <Route
               path="/logout"
               render={props => {
-                return (
-                  <Signout
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleLogOut={this.handleLogOut}
-                  />
-                );
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Signout
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleLogOut={this.handleLogOut}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
             <Route
               path="/login"
               render={props => {
-                return (
-                  <Signin
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleInput={this.handleInput}
-                    handleLogIn={this.handleLogIn}
-                  />
-                );
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signin
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleInput={this.handleInput}
+                      handleLogIn={this.handleLogIn}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
           </div>
