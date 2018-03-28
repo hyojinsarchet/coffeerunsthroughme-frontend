@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
@@ -42,6 +42,7 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
+
     localStorage.clear();
   }
 
@@ -52,6 +53,8 @@ class App extends Component {
   }
 
   handleOnChange(e) {}
+
+  addField(e) {}
 
   handleSignUp(e) {
     e.preventDefault();
@@ -96,13 +99,6 @@ class App extends Component {
           </nav>
           <div>
             <Route
-              exact
-              path="/"
-              render={() => {
-                return <Header />;
-              }}
-            />
-            <Route
               path="/main"
               render={() => {
                 return <Table isLoggedIn={this.state.isLoggedIn} />;
@@ -119,6 +115,9 @@ class App extends Component {
                     handleSignUp={this.handleSignUp}
                   />
                 );
+                if (this.state.isLoggedIn === true) {
+                  <Redirect to="/main" />;
+                }
               }}
             />
             <Route

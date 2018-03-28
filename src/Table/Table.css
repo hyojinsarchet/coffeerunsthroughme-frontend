@@ -1,10 +1,11 @@
 h1 {
   font-family: "Special Elite", cursive;
+  padding: 10px;
 }
 
 #coffeetable {
   border-collapse: collapse;
-  width: 90%;
+  width: 100%;
   text-align: center;
   font-family: "Special Elite", cursive;
 }
@@ -26,7 +27,33 @@ th {
   color: white;
 }
 
-.userinfo {
+.userInfo {
   background: #d1c9a1;
   border: 3px solid black;
+}
+
+.quantity {
+  border-radius: 5px;
+  padding: 8px;
+  font-family: "Special Elite", cursive;
+}
+
+.drinks {
+  font-size: 15px;
+  padding: 8px;
+  font-family: "Special Elite", cursive;
+}
+
+.userForm {
+  border-radius: 5px;
+  padding: 8px;
+  font-family: "Special Elite", cursive;
+}
+
+.addField {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: "Special Elite", cursive;
 }
