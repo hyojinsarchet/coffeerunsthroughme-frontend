@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch } from "react-router-dom";
 import "./Header.css";
 
 class Header extends Component {
@@ -7,13 +7,14 @@ class Header extends Component {
     return (
       <div>
         <div className="header">
-          <h1 className="logo">
-            <a href="/">Coffee Runs Through Me</a>
-          </h1>
-          <Link to="/">Home</Link>
-          <Link to="/main" />
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
+          <Switch>
+            <Link to="/" className="logo">
+              Coffee Runs Through Me
+            </Link>
+            <Link to="/main" />
+            <Link to="/signup">Signup</Link>
+            <Link to="/login">Login</Link>
+          </Switch>
         </div>
       </div>
     );
