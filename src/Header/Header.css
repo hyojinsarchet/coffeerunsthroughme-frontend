@@ -1,0 +1,16 @@
+.header {
+  background: #d7c0aa;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+
+.logo {
+  font-family: "Special Elite", cursive;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #4d2713;
+  padding: 15px;
+}

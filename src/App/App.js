@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import axios from "axios";
-import Signout from "../authentication/signout.js";
-import Signin from "../authentication/signin.js";
-import Signup from "../authentication/signup.js";
 
 class App extends Component {
   constructor() {
@@ -85,61 +82,16 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Link to="/">Home</Link>
-        <Link to="/main" />
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
-        <Header />
-
-        <Switch>
-          <Route
-            path="/main"
-            render={() => {
-              return <Table isLoggedIn={this.state.isLoggedIn} />;
-            }}
-          />
-          <Route
-            path="/signup"
-            render={props => {
-              return (
-                <Signup
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleSignUp={this.handleSignUp}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/logout"
-            render={props => {
-              return (
-                <Signout
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleLogOut={this.handleLogOut}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/login"
-            render={props => {
-              return (
-                <Signin
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleLogIn={this.handleLogIn}
-                />
-              );
-            }}
-          />
-        </Switch>
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <div className="image">
+            <img src="../../images/coffee.jpg" alt="coffee" />
+          </div>
+          <Table />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
