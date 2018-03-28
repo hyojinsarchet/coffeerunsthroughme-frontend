@@ -11,8 +11,9 @@ class Table extends Component {
           <span>User</span>
           <span>Drink</span>
           <span>Quantity</span>
-          <hr /> */}
-        <TableList />
+          <hr />
+          <TableList />
+        </div> */}
       </div>
       // </div>
     );
