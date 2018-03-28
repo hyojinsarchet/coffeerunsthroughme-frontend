@@ -118,6 +118,9 @@ class App extends Component {
                     handleSignUp={this.handleSignUp}
                   />
                 );
+                if (this.state.isLoggedIn === true) {
+                  <Redirect to="/main" />;
+                }
               }}
             />
             <Route
