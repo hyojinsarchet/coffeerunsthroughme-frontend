@@ -5,9 +5,9 @@ import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import axios from "axios";
-import Signup from "../authentication/signup";
-import Signin from "../authentication/signin";
-import Signout from "../authentication/signout";
+import Signup from "../authentication/signup.js";
+import Signout from "../authentication/signout.js";
+import Signin from "../authentication/signin.js";
 
 class App extends Component {
   constructor() {
