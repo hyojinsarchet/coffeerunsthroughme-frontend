@@ -85,13 +85,6 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="App">
-        <Link to="/">Home</Link>
-        <Link to="/main" />
-        <Link to="/signup">Signup</Link>
-        <Link to="/login">Login</Link>
-=======
       <div className="app">
         <nav>
           <Link to="/">Main</Link>
@@ -112,7 +105,6 @@ class App extends Component {
           <Footer />
         </div>
 
->>>>>>> ab1aa8b29435c598378cfb0fb38c069bef39ca85
         <Header />
         <Switch>
           <Route
