@@ -1,6 +1,6 @@
 .header {
   background: #d7c0aa;
-  position: fixed;
+  display: fixed;
   top: 0px;
   width: 100%;
   font-family: "Special Elite", cursive;

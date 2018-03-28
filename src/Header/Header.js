@@ -4,11 +4,7 @@ import "./Header.css";
 
 class Header extends Component {
   render() {
-    let nav = [
-      <Link key={2} to="/" className="logo">
-        Coffee Runs Through Me
-      </Link>
-    ];
+    let nav = [];
     if (this.props.isLoggedIn) {
       nav.push(
         <div className="header">
@@ -27,10 +23,12 @@ class Header extends Component {
     } else {
       nav.push(
         <div className="header">
+          <Link key={2} to="/" className="logo">
+            Coffee Runs Through Me
+          </Link>
           <Link key={5} to="/login" className="nav">
             Login
           </Link>
-<<<<<<< HEAD
           <Link key={6} to="/signup" className="nav">
             Signup
           </Link>
@@ -39,18 +37,6 @@ class Header extends Component {
       );
     }
     return <div>{nav}</div>;
-=======
-
-          <Link to="/signup" className="nav">
-            Signup
-          </Link>
-          <Link to="/main" className="nav">
-            Main
-          </Link>
-        </div>
-      </div>
-    );
->>>>>>> aiyen
   }
 }
 

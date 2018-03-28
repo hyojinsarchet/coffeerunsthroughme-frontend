@@ -1,6 +1,10 @@
+h1 {
+  font-family: "Special Elite", cursive;
+}
+
 #coffeetable {
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
   text-align: center;
   font-family: "Special Elite", cursive;
 }
