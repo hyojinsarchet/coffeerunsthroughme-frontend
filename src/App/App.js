@@ -82,7 +82,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <nav>
           <Link to="/">Main</Link>
           <Link to="/main">Home</Link>
