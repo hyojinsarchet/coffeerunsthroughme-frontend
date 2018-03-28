@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
@@ -42,6 +42,7 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
+
     localStorage.clear();
   }
 
@@ -95,7 +96,7 @@ class App extends Component {
           <div>
             <Route
               exact
-              path="/"
+              path="/main"
               render={() => {
                 return <Header />;
               }}
