@@ -26,26 +26,26 @@ This is a Coffee-runs-through-me app. It has the following features:
 
 ### MVP
 
-* ability to select and create my drink list.
-* ability to see my drinks.
-* ability to submit my choice of drinks.
+* Ability to select and create my drink list.
+* Ability to see my drinks.
+* Ability to submit my choice of drinks.
 
 ### Bronze
 
 * Sign up, Sign in, Sign out.
-* ability to edit drinks.
-* ability to delete drinks.
+* Ability to edit drinks.
+* Ability to delete drinks.
 
 ### Silver
 
-* ability to track and compare my drink selection with other people's.
-* user profile showing their drink history.
-* user profile showing their daily caffeine consumption on a graph.
+* Ability to track and compare my drink selection with other people's.
+* User profile showing their drink history.
+* User profile showing their daily caffeine consumption on a graph.
 
 ### Gold
 
-* ability to comment on users' profiles.
-* ability to add more drink selection.
+* Ability to comment on users' profiles.
+* Ability to add more drink selection.
 
 ### Used tools in the project
 
@@ -60,4 +60,4 @@ This is a Coffee-runs-through-me app. It has the following features:
 ### Wireframes
 
 ![main](Main.png)
-![home](Home Page.png)
+![home](Homepage.png)
