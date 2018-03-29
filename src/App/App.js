@@ -8,6 +8,7 @@ import axios from "axios";
 import Signup from "../authentication/signup.js";
 import Signout from "../authentication/signout.js";
 import Signin from "../authentication/signin.js";
+import Funfact from "../Funfact/Funfact";
 
 class App extends Component {
   constructor(props) {
@@ -198,6 +199,7 @@ class App extends Component {
               }}
             />
           </div>
+          <Funfact />
           <Footer />
         </div>
       </Switch>
