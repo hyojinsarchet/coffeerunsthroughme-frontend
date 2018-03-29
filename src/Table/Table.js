@@ -7,7 +7,7 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <h1>Daily Caffeine Intake.</h1>
+        <h1>{this.props.email} Daily Caffeine Intake.</h1>
         <button
           onClick={() => {
             /*addField()*/

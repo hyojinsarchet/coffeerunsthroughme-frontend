@@ -3,18 +3,13 @@ import "./Table.css";
 
 class TableRow extends Component {
   render() {
+    console.log(this.props.email);
     const tableRow = (
       <table id="coffeetable">
         <tbody>
           <tr className="userInfo">
             <td>
-              <input
-                value={this.props.email}
-                name="email"
-                onChange={this.props.onChange}
-                className="userForm"
-                placeholder="name"
-              />
+              <label className="userForm">{this.props.email} </label>
             </td>
             <td>
               <select className="drinks">
@@ -44,9 +39,9 @@ class TableRow extends Component {
               />
               <input value="submit" type="submit" className="new" />
               <button
-                onClick={() => {
-                  /*deleteField()*/
-                }}
+                // onClick={() => {
+                //   deleteField()
+                // }}
                 className="deleteField"
               >
                 delete
