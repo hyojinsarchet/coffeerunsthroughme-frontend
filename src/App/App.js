@@ -18,7 +18,6 @@ class App extends Component {
       password: "",
       drinks: [],
       drink: {
-        email: "",
         quantity: "",
         beverage: {
           coffee: 95,
@@ -31,24 +30,12 @@ class App extends Component {
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
-    this.handleInput = this.handleInput.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleUserAuth = this.handleUserAuth.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    if (localStorage.token) {
-      this.setState({
-        isLoggedIn: true
-      });
-    } else {
-      this.setState({
-        isLoggedIn: false
-      });
-    }
-    this.handleUserAuth = this.handleUserAuth.bind(this);
-  }
   handleSignUp(e) {
     e.preventDefault();
     axios
@@ -82,15 +69,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // if (localStorage.token) {
-    //   this.setState({
-    //     isLoggedIn: true
-    //   });
-    // } else {
-    //   this.setState({
-    //     isLoggedIn: false
-    //   });
-    // }
     axios.get("http://localhost:3001/main").then(response => {
       this.setState({
         drinks: response.data
@@ -111,15 +89,6 @@ class App extends Component {
   handleUserAuth(e) {
     this.setState({
       [e.target.name]: e.target.value
-    });
-  }
-
-  handleInput(e) {
-    this.setState({
-      ...this.state,
-      drink: {
-        [e.target.name]: e.target.value
-      }
     });
   }
 
@@ -174,7 +143,7 @@ class App extends Component {
                   return (
                     <Table
                       drinks={this.state.drinks}
-                      email={this.state.drink.user}
+                      email={this.state.email}
                       quantity={this.state.drink.quantity}
                       isLoggedIn={this.state.isLoggedIn}
                       onChange={this.handleInput}
