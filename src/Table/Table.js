@@ -17,15 +17,6 @@ class Table extends Component {
           + create new
         </button>
         <TableProperties />
-        {this.props.drinks.map((drink, index) => {
-          return (
-            <TableRow
-              email={this.props.email}
-              quantity={this.props.quantity}
-              onChange={this.props.onChange}
-            />
-          );
-        })}
         <TableRow
           email={this.props.email}
           quantity={this.props.quantity}
