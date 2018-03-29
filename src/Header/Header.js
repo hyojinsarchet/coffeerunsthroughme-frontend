@@ -34,7 +34,6 @@ class Header extends Component {
         </div>
       );
     }
-    console.log(nav);
     return <div className="header">{nav}</div>;
   }
 }

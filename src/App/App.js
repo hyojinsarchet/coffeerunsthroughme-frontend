@@ -140,15 +140,19 @@ class App extends Component {
             <Route
               path="/main"
               render={() => {
-                return (
-                  <Table
-                    drinks={this.state.drinks}
-                    email={this.state.drink.user}
-                    quantity={this.state.drink.quantity}
-                    isLoggedIn={this.state.isLoggedIn}
-                    onChange={this.handleInput}
-                  />
-                );
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Table
+                      drinks={this.state.drinks}
+                      email={this.state.drink.user}
+                      quantity={this.state.drink.quantity}
+                      isLoggedIn={this.state.isLoggedIn}
+                      onChange={this.handleInput}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
             <Route
