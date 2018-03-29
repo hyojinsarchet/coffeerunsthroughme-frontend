@@ -10,7 +10,7 @@
 
 ### How to use this application
 
-* Users can create their profiles and track of how much caffeine I consume daily.
+* Users can create their profiles and track of how much caffeine they consume daily.
 * Users can see their saved drinks and compare how much caffeine other users' take and what are their favorite drinks.
 * Users can edit and delete their saved drinks.
 * Users also can see some fun facts about caffeine.
@@ -32,4 +32,4 @@
 
 ### The main page look
 
-![main](main page link here)
+![main](./planning/App-main.png)
