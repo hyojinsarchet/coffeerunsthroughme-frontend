@@ -9,14 +9,18 @@ class Signin extends Component {
         <form className="authentication">
           <div>
             <label htmlFor="email">Username</label>
-            <input type="text" name="email" onChange={this.props.handleInput} />
+            <input
+              type="text"
+              name="email"
+              onChange={this.props.handleUserAuth}
+            />
           </div>
           <div>
             <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
-              onChange={this.props.handleInput}
+              onChange={this.props.handleUserAuth}
             />
           </div>
           <input
