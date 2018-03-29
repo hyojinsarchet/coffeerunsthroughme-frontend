@@ -20,10 +20,22 @@ class TableRow extends Component {
               </td>
               <td>
                 <select className="drinks">
-                  <option value="soda">Soda</option>
-                  <option value="coffee">Coffee</option>
-                  <option value="energy_drink">Energy Drink</option>
-                  <option value="tea">Tea</option>
+                  <option
+                    onChange={this.props.caffeine}
+                    name="soda"
+                    value="soda"
+                  >
+                    Soda
+                  </option>
+                  <option onChange={this.props.caffeine} value="coffee">
+                    Coffee
+                  </option>
+                  <option onChange={this.props.caffeine} value="energy_drink">
+                    Energy Drink
+                  </option>
+                  <option onChange={this.props.caffeine} value="tea">
+                    Tea
+                  </option>
                 </select>
               </td>
               <td>
