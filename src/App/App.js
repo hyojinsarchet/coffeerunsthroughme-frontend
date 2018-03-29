@@ -19,7 +19,14 @@ class App extends Component {
       drinks: [],
       drink: {
         email: "",
-        quantity: ""
+        quantity: "",
+        beverage: {
+          coffee: 95,
+          tea: 45,
+          soda: 45,
+          energy_drink: 80
+        },
+        calculations: ""
       },
       isLoggedIn: false
     };
@@ -27,6 +34,7 @@ class App extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +47,7 @@ class App extends Component {
         isLoggedIn: false
       });
     }
-    axios.get("https://http://localhost:3001/main").then(response => {
+    axios.get("http://localhost:3001/main").then(response => {
       this.setState({
         drinks: response.data
       });
@@ -52,7 +60,6 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
-    let isLoggedIn = this.state.isLoggedIn;
 
     localStorage.clear();
   }
@@ -66,13 +73,27 @@ class App extends Component {
     });
   }
 
-  // addField(e) {}
-
-  // deleteField(e) {
-  //   const users =[...this.state.email]
-  //   email.slice(index, 1)
-  //   this.setState({users})
-  // }
+  convertCaffeine(e) {
+    let drink = e.target.value;
+    console.log(drink);
+    if (drink === "coffee") {
+      return (this.state.drink.coffee * this.state.drink.quantity).push(
+        this.state.calculations + " mg"
+      );
+    } else if (drink === "soda") {
+      return (this.state.drink.soda * this.state.drink.quantity).push(
+        this.state.calculations + " mg"
+      );
+    } else if (drink === "tea") {
+      return (this.state.tea * this.state.drink.quantity).push(
+        this.state.calculations + "mg"
+      );
+    } else if (drink === "energy_drink") {
+      return (this.state.energy_drink * this.state.drink.quantity).push(
+        this.state.calculations + "mg"
+      );
+    }
+  }
 
   handleSignUp(e) {
     e.preventDefault();
@@ -92,8 +113,6 @@ class App extends Component {
 
   handleLogIn(e) {
     e.preventDefault();
-    console.log(e.target);
-
     axios
       .post("http://localhost:3001/users/login", {
         email: this.state.email,
@@ -124,8 +143,10 @@ class App extends Component {
                     drinks={this.state.drinks}
                     email={this.state.drink.email}
                     quantity={this.state.drink.quantity}
+                    beverage={this.state.drink.beverage}
                     isLoggedIn={this.state.isLoggedIn}
                     onChange={this.handleInput}
+                    convert={this.convertCaffeine}
                   />
                 );
               }}
