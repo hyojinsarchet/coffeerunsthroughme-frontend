@@ -21,9 +21,7 @@ class TableRow extends Component {
             </td>
             <td>
               <input
-                value={this.props.quantity}
                 name="quantity"
-                placeholder="cup"
                 type="number"
                 onChange={this.props.onChange}
                 className="userForm"

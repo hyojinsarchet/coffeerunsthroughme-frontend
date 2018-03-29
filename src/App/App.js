@@ -216,7 +216,6 @@ class App extends Component {
               }}
             />
           </div>
-          <Funfact />
           <Footer />
         </div>
       </Switch>

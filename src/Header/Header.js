@@ -7,19 +7,18 @@ class Header extends Component {
     let nav = [];
     if (this.props.isLoggedIn) {
       nav.push(
-
         <div key={1}>
-        <Link to="/funfact" className="logo">
-            Fun facts
-          </Link>
           <Link to="/main" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link to="/main" className="nav">
-            Test
-          </Link>
           <Link to="/logout" className="nav">
             Logout
+          </Link>
+          <Link to="/funfact" className="nav">
+            Fun facts
+          </Link>
+          <Link to="/main" className="nav">
+            Test
           </Link>
         </div>
       );
