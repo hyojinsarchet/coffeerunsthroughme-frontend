@@ -7,37 +7,37 @@ class Header extends Component {
     let nav = [];
     if (this.props.isLoggedIn) {
       nav.push(
-        <div>
-          <Link to="/funfact" className="logo">
+
+        <div key={1}>
+        <Link to="/funfact" className="logo">
             Fun facts
           </Link>
-          <Link key={2} to="/main" className="logo">
+          <Link to="/main" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link key={3} to="/main" className="nav">
+          <Link to="/main" className="nav">
             Test
           </Link>
-          <Link key={4} to="/logout" className="nav">
+          <Link to="/logout" className="nav">
             Logout
           </Link>
         </div>
       );
     } else {
       nav.push(
-        <div>
-          <Link key={7} to="/main" className="logo">
+        <div key={2}>
+          <Link to="/" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link key={5} to="/login" className="nav">
+          <Link to="/login" className="nav">
             Login
           </Link>
-          <Link key={6} to="/signup" className="nav">
+          <Link to="/signup" className="nav">
             Signup
           </Link>
         </div>
       );
     }
-    console.log(nav);
     return <div className="header">{nav}</div>;
   }
 }
