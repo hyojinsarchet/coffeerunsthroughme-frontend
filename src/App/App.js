@@ -10,12 +10,17 @@ import Signout from "../authentication/signout.js";
 import Signin from "../authentication/signin.js";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
       password: "",
+      drinks: [],
+      drink: {
+        email: "",
+        quantity: ""
+      },
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -34,6 +39,11 @@ class App extends Component {
         isLoggedIn: false
       });
     }
+    axios.get("https://http://localhost:3001/main").then(response => {
+      this.setState({
+        drinks: response.data
+      });
+    });
   }
 
   handleLogOut() {
@@ -42,19 +52,27 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
+    let isLoggedIn = this.state.isLoggedIn;
 
     localStorage.clear();
   }
 
   handleInput(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      ...this.state,
+      drink: {
+        [e.target.name]: e.target.value
+      }
     });
   }
 
-  handleOnChange(e) {}
+  // addField(e) {}
 
-  addField(e) {}
+  // deleteField(e) {
+  //   const users =[...this.state.email]
+  //   email.slice(index, 1)
+  //   this.setState({users})
+  // }
 
   handleSignUp(e) {
     e.preventDefault();
@@ -101,48 +119,65 @@ class App extends Component {
             <Route
               path="/main"
               render={() => {
-                return <Table isLoggedIn={this.state.isLoggedIn} />;
+                return (
+                  <Table
+                    drinks={this.state.drinks}
+                    email={this.state.drink.email}
+                    quantity={this.state.drink.quantity}
+                    isLoggedIn={this.state.isLoggedIn}
+                    onChange={this.handleInput}
+                  />
+                );
               }}
             />
             <Route
               path="/signup"
               render={props => {
-                return (
-                  <Signup
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleInput={this.handleInput}
-                    handleSignUp={this.handleSignUp}
-                  />
-                );
-                if (this.state.isLoggedIn === true) {
-                  <Redirect to="/main" />;
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signup
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleInput={this.handleInput}
+                      handleSignUp={this.handleSignUp}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
                 }
               }}
             />
             <Route
               path="/logout"
               render={props => {
-                return (
-                  <Signout
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleLogOut={this.handleLogOut}
-                  />
-                );
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Signout
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleLogOut={this.handleLogOut}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
             <Route
               path="/login"
               render={props => {
-                return (
-                  <Signin
-                    {...props}
-                    isLoggedIn={this.state.isLoggedIn}
-                    handleInput={this.handleInput}
-                    handleLogIn={this.handleLogIn}
-                  />
-                );
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signin
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleInput={this.handleInput}
+                      handleLogIn={this.handleLogIn}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
           </div>

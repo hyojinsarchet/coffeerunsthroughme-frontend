@@ -7,7 +7,7 @@ class Header extends Component {
     let nav = [];
     if (this.props.isLoggedIn) {
       nav.push(
-        <div>
+        <div key={1}>
           <Link key={2} to="/main" className="logo">
             Coffee Runs Through Me
           </Link>
@@ -17,12 +17,11 @@ class Header extends Component {
           <Link key={4} to="/logout" className="nav">
             Logout
           </Link>
-        </div>,
-        console.log(nav)
+        </div>
       );
     } else {
       nav.push(
-        <div>
+        <div key={2}>
           <Link key={7} to="/main" className="logo">
             Coffee Runs Through Me
           </Link>
@@ -32,10 +31,10 @@ class Header extends Component {
           <Link key={6} to="/signup" className="nav">
             Signup
           </Link>
-        </div>,
-        console.log(nav)
+        </div>
       );
     }
+    console.log(nav);
     return <div className="header">{nav}</div>;
   }
 }

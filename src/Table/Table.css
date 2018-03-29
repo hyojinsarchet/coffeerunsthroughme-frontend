@@ -14,6 +14,7 @@ h1 {
 th {
   border: 3px solid black;
   padding: 8px;
+  width: 25%;
 }
 
 #coffeetable tr {
@@ -22,7 +23,7 @@ th {
   padding-bottom: 12px;
 }
 
-.properties {
+.content {
   background: #74aa2e;
   color: white;
 }
@@ -46,14 +47,28 @@ th {
 
 .userForm {
   border-radius: 5px;
-  padding: 8px;
+  padding: 10px;
   font-family: "Special Elite", cursive;
 }
 
-.addField {
+.new {
   padding: 5px;
   margin: 5px;
   border-radius: 8px;
   font-size: 15px;
   font-family: "Special Elite", cursive;
+}
+
+.deleteField {
+  background: #fc363b;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: "Special Elite", cursive;
+}
+
+.create {
+  float: right;
 }
