@@ -17,7 +17,7 @@ class Funfact extends Component {
 
     return (
       <div className="funcfact">
-        <h1>Want to know some fun facts?</h1>
+        <h1 className="title">Want to know some fun facts?</h1>
         <Slider {...settings}>
           <div>
             <h3>

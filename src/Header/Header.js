@@ -8,6 +8,9 @@ class Header extends Component {
     if (this.props.isLoggedIn) {
       nav.push(
         <div>
+          <Link to="/funfact" className="logo">
+            Fun facts
+          </Link>
           <Link key={2} to="/main" className="logo">
             Coffee Runs Through Me
           </Link>

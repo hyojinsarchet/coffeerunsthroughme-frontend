@@ -166,6 +166,16 @@ class App extends Component {
               }}
             />
             <Route
+              path="/funfact"
+              render={() => {
+                if (this.state.isLoggedIn === true) {
+                  return <Funfact />;
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
               path="/logout"
               render={props => {
                 if (this.state.isLoggedIn === true) {
