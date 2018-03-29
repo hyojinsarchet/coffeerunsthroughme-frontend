@@ -41,7 +41,7 @@ class Table extends Component {
               </select>
             </td>
             <td>
-              <input value="quanitity" type="number" />
+              <input value="quantity" type="number" />
             </td>
             <td>is it healthy</td>
           </tr>
