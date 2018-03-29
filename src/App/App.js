@@ -18,6 +18,7 @@ class App extends Component {
       password: "",
       drinks: [],
       drink: {
+<<<<<<< HEAD
         email: "",
         quantity: "",
         beverage: {
@@ -27,6 +28,14 @@ class App extends Component {
           energy_drink: 80
         },
         calculations: ""
+=======
+        user: "",
+        quantity: "",
+        coffee: 95,
+        tea: 45,
+        soda: 45,
+        energy_drink: 80
+>>>>>>> 86a33302b674ddd22c80af5a97e30c024ebd2811
       },
       isLoggedIn: false
     };
@@ -47,6 +56,50 @@ class App extends Component {
         isLoggedIn: false
       });
     }
+    this.handleUserAuth = this.handleUserAuth.bind(this);
+  }
+  handleSignUp(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/users/signup", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleLogIn(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  componentDidMount() {
+    // if (localStorage.token) {
+    //   this.setState({
+    //     isLoggedIn: true
+    //   });
+    // } else {
+    //   this.setState({
+    //     isLoggedIn: false
+    //   });
+    // }
     axios.get("http://localhost:3001/main").then(response => {
       this.setState({
         drinks: response.data
@@ -62,6 +115,12 @@ class App extends Component {
     });
 
     localStorage.clear();
+  }
+
+  handleUserAuth(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   handleInput(e) {
@@ -95,6 +154,7 @@ class App extends Component {
     }
   }
 
+<<<<<<< HEAD
   handleSignUp(e) {
     e.preventDefault();
     axios
@@ -125,6 +185,20 @@ class App extends Component {
         });
       })
       .catch(err => console.log(err));
+=======
+  caffeine(e) {
+    let drink = e.target.value;
+    console.log(drink);
+    if (drink === "coffee") {
+      return this.state.drink.coffee * this.state.drink.quantity;
+    } else if (drink === "soda") {
+      return this.state.drink.soda * this.state.drink.quantity;
+    } else if (drink === "tea") {
+      return this.state.tea * this.state.drink.quantity;
+    } else if (drink === "energy_drink") {
+      return this.state.energy_drink * this.state.drink.quantity;
+    }
+>>>>>>> 86a33302b674ddd22c80af5a97e30c024ebd2811
   }
 
   render() {
@@ -141,7 +215,7 @@ class App extends Component {
                 return (
                   <Table
                     drinks={this.state.drinks}
-                    email={this.state.drink.email}
+                    email={this.state.drink.user}
                     quantity={this.state.drink.quantity}
                     beverage={this.state.drink.beverage}
                     isLoggedIn={this.state.isLoggedIn}
@@ -159,7 +233,7 @@ class App extends Component {
                     <Signup
                       {...props}
                       isLoggedIn={this.state.isLoggedIn}
-                      handleInput={this.handleInput}
+                      handleUserAuth={this.handleUserAuth}
                       handleSignUp={this.handleSignUp}
                     />
                   );
@@ -192,7 +266,7 @@ class App extends Component {
                     <Signin
                       {...props}
                       isLoggedIn={this.state.isLoggedIn}
-                      handleInput={this.handleInput}
+                      handleUserAuth={this.handleUserAuth}
                       handleLogIn={this.handleLogIn}
                     />
                   );

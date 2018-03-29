@@ -8,13 +8,21 @@ class Header extends Component {
     if (this.props.isLoggedIn) {
       nav.push(
         <div key={1}>
+<<<<<<< HEAD
           <Link key={2} to="/" className="logo">
             Coffee Runs Through Me
           </Link>
           <Link key={3} to="/main" className="nav">
             Main
+=======
+          <Link to="/main" className="logo">
+            Coffee Runs Through Me
           </Link>
-          <Link key={4} to="/logout" className="nav">
+          <Link to="/main" className="nav">
+            Test
+>>>>>>> 86a33302b674ddd22c80af5a97e30c024ebd2811
+          </Link>
+          <Link to="/logout" className="nav">
             Logout
           </Link>
         </div>
@@ -22,13 +30,13 @@ class Header extends Component {
     } else {
       nav.push(
         <div key={2}>
-          <Link key={7} to="/main" className="logo">
+          <Link to="/" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link key={5} to="/login" className="nav">
+          <Link to="/login" className="nav">
             Login
           </Link>
-          <Link key={6} to="/signup" className="nav">
+          <Link to="/signup" className="nav">
             Signup
           </Link>
         </div>
