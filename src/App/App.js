@@ -18,12 +18,24 @@ class App extends Component {
       password: "",
       drinks: [],
       drink: {
+<<<<<<< HEAD
+        email: "",
+        quantity: "",
+        beverage: {
+          coffee: 95,
+          tea: 45,
+          soda: 45,
+          energy_drink: 80
+        },
+        calculations: ""
+=======
         user: "",
         quantity: "",
         coffee: 95,
         tea: 45,
         soda: 45,
         energy_drink: 80
+>>>>>>> 86a33302b674ddd22c80af5a97e30c024ebd2811
       },
       isLoggedIn: false
     };
@@ -31,6 +43,19 @@ class App extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (localStorage.token) {
+      this.setState({
+        isLoggedIn: true
+      });
+    } else {
+      this.setState({
+        isLoggedIn: false
+      });
+    }
     this.handleUserAuth = this.handleUserAuth.bind(this);
   }
   handleSignUp(e) {
@@ -107,14 +132,60 @@ class App extends Component {
     });
   }
 
-  // addField(e) {}
+  convertCaffeine(e) {
+    let drink = e.target.value;
+    console.log(drink);
+    if (drink === "coffee") {
+      return (this.state.drink.coffee * this.state.drink.quantity).push(
+        this.state.calculations + " mg"
+      );
+    } else if (drink === "soda") {
+      return (this.state.drink.soda * this.state.drink.quantity).push(
+        this.state.calculations + " mg"
+      );
+    } else if (drink === "tea") {
+      return (this.state.tea * this.state.drink.quantity).push(
+        this.state.calculations + "mg"
+      );
+    } else if (drink === "energy_drink") {
+      return (this.state.energy_drink * this.state.drink.quantity).push(
+        this.state.calculations + "mg"
+      );
+    }
+  }
 
-  // deleteField(e) {
-  //   const users =[...this.state.email]
-  //   email.slice(index, 1)
-  //   this.setState({users})
-  // }
+<<<<<<< HEAD
+  handleSignUp(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/users/signup", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
+  handleLogIn(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/users/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true
+        });
+      })
+      .catch(err => console.log(err));
+=======
   caffeine(e) {
     let drink = e.target.value;
     console.log(drink);
@@ -127,6 +198,7 @@ class App extends Component {
     } else if (drink === "energy_drink") {
       return this.state.energy_drink * this.state.drink.quantity;
     }
+>>>>>>> 86a33302b674ddd22c80af5a97e30c024ebd2811
   }
 
   render() {
@@ -145,8 +217,10 @@ class App extends Component {
                     drinks={this.state.drinks}
                     email={this.state.drink.user}
                     quantity={this.state.drink.quantity}
+                    beverage={this.state.drink.beverage}
                     isLoggedIn={this.state.isLoggedIn}
                     onChange={this.handleInput}
+                    convert={this.convertCaffeine}
                   />
                 );
               }}

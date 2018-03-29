@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Table.css";
-import TableRow from "./TableRow";
 
 class TableProperties extends Component {
   render() {
@@ -11,7 +10,7 @@ class TableProperties extends Component {
             <th>User</th>
             <th>Drink</th>
             <th>Quantity</th>
-            <th>Calulations</th>
+            <th>Calculations</th>
           </tr>
         </tbody>
       </table>
