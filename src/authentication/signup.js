@@ -7,7 +7,7 @@ class Signup extends Component {
         <h2>Sign Up</h2>
         <form>
           <div>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Username</label>
             <input type="text" name="email" onChange={this.props.handleInput} />
           </div>
           <div>
