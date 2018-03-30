@@ -2,27 +2,7 @@ import React, { Component } from "react";
 import "./Table.css";
 
 class TableRow extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      ...this.props.drink
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
   render() {
-    const onChangeFunction =
-      this.props.saved === false
-        ? this.props.onChange
-        : this.props.editDrinks(this.props.index);
     const tableRow = (
       <table id="coffeetable">
         <tbody>
@@ -31,8 +11,8 @@ class TableRow extends Component {
               <select
                 className="drinks"
                 name="drinkType"
-                onChange={this.handleChange}
-                value={this.state.drinkType}
+                onChange={this.props.handleChange}
+                value={this.props.drink.drinkType}
               >
                 <option value="Soda">Soda</option>
                 <option value="Coffee">Coffee</option>
@@ -42,18 +22,18 @@ class TableRow extends Component {
             </td>
             <td>
               <input
-                value={this.state.quantity}
+                value={this.props.drink.quantity}
                 name="quantity"
                 placeholder="cup"
                 type="number"
-                onChange={this.handleChange}
+                onChange={this.props.handleChange}
                 className="userForm"
               />
               cup
             </td>
             <td>
               <input
-                value={this.state.calculation}
+                defaultValue={this.props.drink.calculation}
                 type="number"
                 name="mg"
                 placeholder="mg"
@@ -86,10 +66,7 @@ class TableRow extends Component {
         onSubmit={
           this.props.saved === false
             ? this.props.onSubmit
-            : e => {
-                e.preventDefault();
-                this.props.submitEdit(this.state);
-              }
+            : this.props.onSubmitEdit(this.props.index)
         }
       >
         {tableRow}

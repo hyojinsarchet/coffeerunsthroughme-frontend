@@ -19,7 +19,7 @@ class Signup extends Component {
             <label htmlFor="password">Password </label>
             <input
               className="userForm"
-              type="text"
+              type="password"
               name="password"
               onChange={this.props.handleUserAuth}
             />

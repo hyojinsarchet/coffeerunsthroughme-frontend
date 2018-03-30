@@ -16,17 +16,16 @@ class Table extends Component {
               key={index}
               index={index}
               drink={drink}
-              onChange={this.props.onChange}
-              editDrinks={this.props.editDrinks}
+              handleChange={this.props.editDrinks(index)}
               deleteField={this.props.deleteField}
-              submitEdit={this.props.submitEdit}
+              onSubmitEdit={this.props.onSubmitEdit}
               saved={true}
             />
           );
         })}
         <TableRow
           drink={this.props.drink}
-          onChange={this.props.onChange}
+          handleChange={this.props.handleChange}
           onSubmit={this.props.onSubmit}
           saved={false}
         />
