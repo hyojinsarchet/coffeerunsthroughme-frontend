@@ -63,7 +63,7 @@ class App extends Component {
           listOfDrinks.push(newDrink);
         }
         this.setState({
-          drinks: newArray
+          drinks: listOfDrinks
         });
       });
   }
