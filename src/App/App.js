@@ -97,7 +97,6 @@ class App extends Component {
     return e => {
       e.preventDefault();
       const drinkId = this.state.drinks[index].id;
-      console.log(drinkId);
       axios
         .put(`https://coffeerunsthroughme.herokuapp.com/main/${drinkId}`, {
           ...this.state.drinks[index]
@@ -131,14 +130,12 @@ class App extends Component {
         drinkToUpdate.drinkType,
         drinkToUpdate.quantity
       );
-      console.log(drinkToUpdate);
       this.forceUpdate();
     };
   }
 
   deleteField(index, drink) {
     const drinkId = this.state.drinks[index].id;
-    console.log(drinkId);
     axios
       .delete(`https://coffeerunsthroughme.herokuapp.com/main/${drinkId}`)
       .then(res => {
@@ -150,20 +147,17 @@ class App extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("Submitting");
     const newDrinks = this.state.drinks.slice();
-    console.log(this.state.drink);
     var newDrinkState = { ...this.state.drink };
-    newDrinkState.calculation = this.convertCaffeine(
-      this.state.drink.drinkType,
-      this.state.drink.quantity
-    );
-    console.log("NewDrinkState: " + JSON.stringify(newDrinkState));
+
     axios
       .post("https://coffeerunsthroughme.herokuapp.com/main", newDrinkState)
       .then(res => {
         newDrinkState.id = res._id;
-        console.log("Before: " + this.state.drinks.length);
+        newDrinkState.calculation = this.convertCaffeine(
+          this.state.drink.drinkType,
+          this.state.drink.quantity
+        );
         newDrinks.push(newDrinkState);
         this.setState({
           ...this.state,
@@ -175,10 +169,8 @@ class App extends Component {
             calculation: 0
           }
         });
-        console.log("After: " + this.state.drinks.length);
       })
       .catch(err => console.log(err));
-    console.log("Submitted");
   }
 
   handleSignUp(e) {
