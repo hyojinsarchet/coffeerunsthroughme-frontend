@@ -17,24 +17,21 @@ class App extends Component {
     this.state = {
       email: "",
       password: "",
-      drinks: [],
-      drink: {
-        quantity: "",
-        beverage: {
-          coffee: 95,
-          tea: 45,
-          soda: 45,
-          energy_drink: 80
-        },
-        calculations: ""
-      },
+      drink: [],
+      quantity: "",
+      drinks: "",
+      calculations: "",
+      number: [1],
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleUserAuth = this.handleUserAuth.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleDrink = this.handleDrink.bind(this);
+    this.handleCalculation = this.handleCalculation.bind(this);
+    this.iterator = this.iterator.bind(this);
   }
 
   handleSignUp(e) {
@@ -72,7 +69,7 @@ class App extends Component {
   componentDidMount() {
     axios.get("http://localhost:3001/main").then(response => {
       this.setState({
-        drinks: response.data
+        drink: response.data
       });
     });
   }
@@ -93,43 +90,55 @@ class App extends Component {
     });
   }
 
-  convertCaffeine(e) {
+  handleDrink(e) {
+    e.preventDefault();
     let drink = e.target.value;
+    this.setState({
+      drinks: drink
+    });
+  }
+
+  handleInput(e) {
+    e.preventDefault();
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+  handleCalculation(e) {
+    e.preventDefault();
+    let drink = this.state.drinks;
     console.log(drink);
     if (drink === "coffee") {
-      return (this.state.drink.coffee * this.state.drink.quantity).push(
-        this.state.calculations + " mg"
-      );
+      this.setState({
+        calculations: 95 * this.state.quantity
+      });
     } else if (drink === "soda") {
-      return (this.state.drink.soda * this.state.drink.quantity).push(
-        this.state.calculations + " mg"
-      );
+      this.setState({
+        calculations: 45 * this.state.quantity
+      });
     } else if (drink === "tea") {
-      return (this.state.tea * this.state.drink.quantity).push(
-        this.state.calculations + "mg"
-      );
+      this.setState({
+        calculations: 45 * this.state.quantity
+      });
     } else if (drink === "energy_drink") {
-      return (this.state.energy_drink * this.state.drink.quantity).push(
-        this.state.calculations + "mg"
-      );
+      this.setState({
+        calculations: 80 * this.state.quantity
+      });
     }
   }
 
-  caffeine(e) {
-    let drink = e.target.value;
-    console.log(drink);
-    if (drink === "coffee") {
-      return this.state.drink.coffee * this.state.drink.quantity;
-    } else if (drink === "soda") {
-      return this.state.drink.soda * this.state.drink.quantity;
-    } else if (drink === "tea") {
-      return this.state.tea * this.state.drink.quantity;
-    } else if (drink === "energy_drink") {
-      return this.state.energy_drink * this.state.drink.quantity;
+  iterator(e) {
+    let newelement = 1;
+    if (this.state.number.length < 4) {
+      this.setState({
+        number: this.state.number.concat([newelement])
+      });
     }
   }
 
   render() {
+    console.log(this.state.quantity);
+    console.log(this.state.calculations);
     return (
       <Switch>
         <div className="app">
@@ -143,11 +152,16 @@ class App extends Component {
                 if (this.state.isLoggedIn === true) {
                   return (
                     <Table
-                      drinks={this.state.drinks}
+                      drink={this.state.drink}
                       email={this.state.email}
-                      quantity={this.state.drink.quantity}
+                      quantity={this.state.quantity}
                       isLoggedIn={this.state.isLoggedIn}
+                      calculations={this.state.calculations}
                       onChange={this.handleInput}
+                      handleDrink={this.handleDrink}
+                      handleCalculation={this.handleCalculation}
+                      number={this.state.number}
+                      iterator={this.iterator}
                     />
                   );
                 } else {

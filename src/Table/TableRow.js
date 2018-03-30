@@ -12,11 +12,20 @@ class TableRow extends Component {
               <label className="userForm">{this.props.email} </label>
             </td>
             <td>
-              <select className="drinks">
-                <option value="soda">Soda</option>
-                <option value="coffee">Coffee</option>
-                <option value="energy_drink">Energy Drink</option>
-                <option value="tea">Tea</option>
+              <select onChange={this.props.handleDrink} className="drinks">
+                <option>Default</option>
+                <option name="soda" value="soda">
+                  Soda
+                </option>
+                <option name="coffee" value="coffee">
+                  Coffee
+                </option>
+                <option name="energy_drink" value="energy_drink">
+                  Energy Drink
+                </option>
+                <option name="tea" value="tea">
+                  Tea
+                </option>
               </select>
             </td>
             <td>
@@ -35,7 +44,12 @@ class TableRow extends Component {
                 className="userForm"
                 readOnly={true}
               />
-              <input value="submit" type="submit" className="new" />
+              <input
+                value="submit"
+                type="submit"
+                onClick={this.props.handleCalculation}
+                className="new"
+              />
               <button
                 // onClick={() => {
                 //   deleteField()
