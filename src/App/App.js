@@ -17,6 +17,7 @@ class App extends Component {
     this.state = {
       email: "",
       password: "",
+<<<<<<< HEAD
       drinks: [],
       drink: {
         quantity: "",
@@ -29,12 +30,20 @@ class App extends Component {
         soda: 45,
         energy_drink: 80
       },
+=======
+      drink: [],
+      quantity: "",
+      drinks: "",
+      calculations: "",
+      number: [1],
+>>>>>>> Kevin_Table
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleUserAuth = this.handleUserAuth.bind(this);
+<<<<<<< HEAD
     this.convertCaffeine = this.convertCaffeine.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.editDrinks = this.editDrinks.bind(this);
@@ -153,6 +162,12 @@ class App extends Component {
 
     //save to the db
     //axios.post
+=======
+    this.handleInput = this.handleInput.bind(this);
+    this.handleDrink = this.handleDrink.bind(this);
+    this.handleCalculation = this.handleCalculation.bind(this);
+    this.iterator = this.iterator.bind(this);
+>>>>>>> Kevin_Table
   }
 
   handleSignUp(e) {
@@ -205,6 +220,7 @@ class App extends Component {
             <Route
               path="/main"
               render={() => {
+                if (this.state.isLoggedIn === true) {
                 return (
                   <Table
                     drinks={this.state.drinks}
@@ -218,6 +234,9 @@ class App extends Component {
                     deleteField={this.deleteField}
                   />
                 );
+              } else {
+                return <Redirect to="/" />;
+              }
               }}
             />
             <Route

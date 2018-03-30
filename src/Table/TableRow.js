@@ -12,6 +12,7 @@ class TableRow extends Component {
         <tbody>
           <tr className="userInfo">
             <td>
+<<<<<<< HEAD
               <select
                 className="drinks"
                 name="drinkType"
@@ -22,6 +23,25 @@ class TableRow extends Component {
                 <option value="coffee">Coffee</option>
                 <option value="energy_drink">Energy Drink</option>
                 <option value="tea">Tea</option>
+=======
+              <label className="userForm">{this.props.email} </label>
+            </td>
+            <td>
+              <select onChange={this.props.handleDrink} className="drinks">
+                <option>Default</option>
+                <option name="soda" value="soda">
+                  Soda
+                </option>
+                <option name="coffee" value="coffee">
+                  Coffee
+                </option>
+                <option name="energy_drink" value="energy_drink">
+                  Energy Drink
+                </option>
+                <option name="tea" value="tea">
+                  Tea
+                </option>
+>>>>>>> Kevin_Table
               </select>
             </td>
             <td>
@@ -44,6 +64,7 @@ class TableRow extends Component {
                 className="userForm"
                 readOnly={true}
               />
+<<<<<<< HEAD
               mg
               {this.props.saved === false ? (
                 <input value="submit" type="submit" className="new" />
@@ -52,6 +73,14 @@ class TableRow extends Component {
                   submit change
                 </button>
               )}
+=======
+              <input
+                value="submit"
+                type="submit"
+                onClick={this.props.handleCalculation}
+                className="new"
+              />
+>>>>>>> Kevin_Table
               <button
                 onClick={() => {
                   this.props.deleteField(this.props.index);
