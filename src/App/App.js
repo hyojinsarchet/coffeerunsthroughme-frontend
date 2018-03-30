@@ -39,7 +39,6 @@ class App extends Component {
     this.convertCaffeine = this.convertCaffeine.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.editDrinks = this.editDrinks.bind(this);
-    this.handleInput = this.handleInput.bind(this);
     this.deleteField = this.deleteField.bind(this);
     this.submitEdit = this.submitEdit.bind(this);
   }
@@ -95,53 +94,48 @@ class App extends Component {
   editDrinks(index) {
     return e => {
       e.preventDefault();
-
       const drinkToUpdate = this.state.drinks[index];
-
-      console.log("Before edit: " + drinkToUpdate);
       drinkToUpdate[e.target.name] = e.target.value;
-
       drinkToUpdate.calculation = this.convertCaffeine(
         drinkToUpdate.drinkType,
         drinkToUpdate.quantity
       );
-      console.log("After edit: " + drinkToUpdate);
       this.forceUpdate();
     };
   }
 
-  deleteField(index, e, id) {
-    axios.delete(`http://localhost:3001/main/${id}`).then(res => {
+  deleteField(index, drink) {
+    axios.delete(`http://localhost:3001/main/${drink._id}`).then(res => {
       const deleteRow = [...this.state.drinks];
       deleteRow.splice(index, 1);
       this.setState({ drinks: deleteRow });
     });
-    console.log("this has been deleted"); //fix
+    console.log("this has been deleted");
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const newDrinks = this.state.drinks.slice();
-    axios.post("http://localhost:3001/main", {
-      quantity: this.state.quantity
-    });
-
     var newDrinkState = { ...this.state.drink };
     newDrinkState.calculation = this.convertCaffeine(
       this.state.drink.drinkType,
       this.state.drink.quantity
     );
-    newDrinks.push(newDrinkState).then(res =>
-      this.setState({
-        ...this.state,
-        drinks: newDrinks,
-        drink: {
-          quantity: "",
-          drinkType: "soda",
-          calculation: ""
-        }
-      })
-    );
+    axios.post("http://localhost:3001/main", newDrinkState).then(res => {
+      newDrinkState.id = res.id;
+      newDrinks.push(newDrinkState);
+      newDrinks.push(newDrinkState).then(res =>
+        this.setState({
+          ...this.state,
+          drinks: newDrinks,
+          drink: {
+            quantity: "",
+            drinkType: "soda",
+            calculation: ""
+          }
+        })
+      );
+    });
   }
 
   handleSignUp(e) {
@@ -195,19 +189,23 @@ class App extends Component {
             <Route
               path="/main"
               render={() => {
-                return (
-                  <Table
-                    drinks={this.state.drinks}
-                    email={this.state.email}
-                    drink={this.state.drink}
-                    isLoggedIn={this.state.isLoggedIn}
-                    onChange={this.handleInput}
-                    editDrinks={this.editDrinks}
-                    submitEdit={this.submitEdit}
-                    onSubmit={this.handleSubmit}
-                    deleteField={this.deleteField}
-                  />
-                );
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Table
+                      drinks={this.state.drinks}
+                      email={this.state.email}
+                      drink={this.state.drink}
+                      isLoggedIn={this.state.isLoggedIn}
+                      onChange={this.handleInput}
+                      editDrinks={this.editDrinks}
+                      submitEdit={this.submitEdit}
+                      onSubmit={this.handleSubmit}
+                      deleteField={this.deleteField}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
               }}
             />
             <Route
