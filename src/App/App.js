@@ -76,6 +76,11 @@ class App extends Component {
       });
     });
   }
+  handlePost() {
+    axios.post("http://localhost:3001/main").then(response => {
+      console.log(response);
+    });
+  }
 
   handleLogOut() {
     this.setState({
@@ -130,6 +135,7 @@ class App extends Component {
   }
 
   render() {
+    this.handlePost;
     return (
       <Switch>
         <div className="app">
