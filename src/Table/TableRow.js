@@ -3,16 +3,21 @@ import "./Table.css";
 
 class TableRow extends Component {
   render() {
-    console.log(this.props.email);
+    const onChangeFunction =
+      this.props.saved === false
+        ? this.props.onChange
+        : this.props.editDrinks(this.props.index);
     const tableRow = (
       <table id="coffeetable">
         <tbody>
           <tr className="userInfo">
             <td>
-              <label className="userForm">{this.props.email} </label>
-            </td>
-            <td>
-              <select className="drinks">
+              <select
+                className="drinks"
+                name="drinkType"
+                onChange={onChangeFunction}
+                value={this.props.drink.drinkType}
+              >
                 <option value="soda">Soda</option>
                 <option value="coffee">Coffee</option>
                 <option value="energy_drink">Energy Drink</option>
@@ -21,27 +26,36 @@ class TableRow extends Component {
             </td>
             <td>
               <input
-                value={this.props.quantity}
+                value={this.props.drink.quantity}
                 name="quantity"
                 placeholder="cup"
                 type="number"
-                onChange={this.props.onChange}
+                onChange={onChangeFunction}
                 className="userForm"
               />
+              cup
             </td>
             <td>
               <input
-                placeholder="mg"
+                value={this.props.drink.calculation}
                 type="number"
                 name="mg"
+                placeholder="mg"
                 className="userForm"
                 readOnly={true}
               />
-              <input value="submit" type="submit" className="new" />
+              mg
+              {this.props.saved === false ? (
+                <input value="submit" type="submit" className="new" />
+              ) : (
+                <button className="new" type="submit">
+                  submit change
+                </button>
+              )}
               <button
-                // onClick={() => {
-                //   deleteField()
-                // }}
+                onClick={() => {
+                  this.props.deleteField(this.props.index);
+                }}
                 className="deleteField"
               >
                 delete
@@ -51,7 +65,17 @@ class TableRow extends Component {
         </tbody>
       </table>
     );
-    return <form>{tableRow}</form>;
+    return (
+      <form
+        onSubmit={
+          this.props.saved === false
+            ? this.props.onSubmit
+            : this.props.submitEdit
+        }
+      >
+        {tableRow}
+      </form>
+    );
   }
 }
 
