@@ -11,11 +11,11 @@ class Header extends Component {
           <Link to="/main" className="logo">
             Coffee Runs Through Me
           </Link>
-          <Link to="/main" className="nav">
-            Test
-          </Link>
           <Link to="/logout" className="nav">
             Logout
+          </Link>
+          <Link to="/main" className="nav">
+            Fun Facts
           </Link>
         </div>
       );
@@ -29,7 +29,7 @@ class Header extends Component {
             Login
           </Link>
           <Link to="/signup" className="nav">
-            Signup
+            Signup?
           </Link>
         </div>
       );

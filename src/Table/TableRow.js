@@ -28,7 +28,7 @@ class TableRow extends Component {
                 type="number"
                 onChange={this.props.onChange}
                 className="userForm"
-              />{" "}
+              />
               cup
             </td>
             <td>
@@ -36,9 +36,10 @@ class TableRow extends Component {
                 value={this.props.drink.calculation}
                 type="number"
                 name="mg"
+                placeholder="mg"
                 className="userForm"
                 readOnly={true}
-              />{" "}
+              />
               mg
               {this.props.saved === false ? (
                 <input value="submit" type="submit" className="new" />

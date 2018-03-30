@@ -18,9 +18,9 @@ class App extends Component {
       password: "",
       drinks: [],
       drink: {
-        quantity: 0,
+        quantity: "",
         drinkType: "soda",
-        calculation: 0
+        calculation: ""
       },
       beverage: {
         coffee: 95,
@@ -122,9 +122,9 @@ class App extends Component {
 
     this.setState({
       drink: {
-        quantity: 0,
+        quantity: "",
         drinkType: "soda",
-        calculation: 0
+        calculation: ""
       }
     });
   }
