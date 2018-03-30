@@ -7,7 +7,7 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <h1>Daily Caffeine Intake.</h1>
+        <h1>{this.props.email}'s Daily Caffeine Intake. </h1>
         <button
           onClick={() => {
             /*addField()*/
@@ -16,20 +16,25 @@ class Table extends Component {
         >
           + create new
         </button>
+
         <TableProperties />
         {this.props.drinks.map((drink, index) => {
           return (
             <TableRow
-              email={this.props.email}
-              quantity={this.props.quantity}
+              key={index}
+              index={index}
+              drink={drink}
               onChange={this.props.onChange}
+              editDrinks={this.props.editDrinks}
+              saved={true}
             />
           );
         })}
         <TableRow
-          email={this.props.email}
-          quantity={this.props.quantity}
+          drink={this.props.drink}
           onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit}
+          saved={false}
         />
       </div>
     );

@@ -8,16 +8,12 @@ class TableRow extends Component {
         <tbody>
           <tr className="userInfo">
             <td>
-              <input
-                value={this.props.email}
-                name="email"
+              <select
+                className="drinks"
+                name="drinkType"
                 onChange={this.props.onChange}
-                className="userForm"
-                placeholder="name"
-              />
-            </td>
-            <td>
-              <select className="drinks">
+                value={this.props.drink.drinkType}
+              >
                 <option value="soda">Soda</option>
                 <option value="coffee">Coffee</option>
                 <option value="energy_drink">Energy Drink</option>
@@ -26,23 +22,31 @@ class TableRow extends Component {
             </td>
             <td>
               <input
-                value={this.props.quantity}
+                value={this.props.drink.quantity}
                 name="quantity"
                 placeholder="cup"
                 type="number"
                 onChange={this.props.onChange}
                 className="userForm"
-              />
+              />{" "}
+              cup
             </td>
             <td>
               <input
-                placeholder="mg"
+                value={this.props.drink.calculation}
                 type="number"
                 name="mg"
                 className="userForm"
                 readOnly={true}
-              />
-              <input value="submit" type="submit" className="new" />
+              />{" "}
+              mg
+              {this.props.saved === false ? (
+                <input value="submit" type="submit" className="new" />
+              ) : (
+                <button className="new" type="submit">
+                  edit
+                </button>
+              )}
               <button
                 onClick={() => {
                   /*deleteField()*/
@@ -56,7 +60,17 @@ class TableRow extends Component {
         </tbody>
       </table>
     );
-    return <form>{tableRow}</form>;
+    return (
+      <form
+        onSubmit={
+          this.props.saved === false
+            ? this.props.onSubmit
+            : this.props.editDrinks(this.props.index)
+        }
+      >
+        {tableRow}
+      </form>
+    );
   }
 }
 
