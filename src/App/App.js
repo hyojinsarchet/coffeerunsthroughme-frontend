@@ -54,6 +54,7 @@ class App extends Component {
       });
     }
     axios.get("http://localhost:3001/main").then(response => {
+      console.log(response.data);
       this.setState({
         drinks: response.data
       });
@@ -86,7 +87,6 @@ class App extends Component {
   }
 
   convertCaffeine(drinkType, quantity) {
-    console.log(drinkType);
     let caffeineAmount = 0;
     if (drinkType === "coffee") {
       caffeineAmount = this.state.beverage.coffee;
@@ -118,13 +118,13 @@ class App extends Component {
     };
   }
 
-  deleteField(index) {
-    const deleteRow = [...this.state.drinks];
-    deleteRow.splice(index, 1);
-    this.setState({ drinks: deleteRow });
-
-    // TODO: this should delete from the database
-    //axios.delete
+  deleteField(index, e) {
+    axios.delete("http://localhost:3001/main/").then(res => {
+      const deleteRow = [...this.state.drinks];
+      deleteRow.splice(index, 1);
+      this.setState({ drinks: deleteRow });
+    });
+    console.log("this has been deleted");
   }
 
   handleSubmit(e) {
