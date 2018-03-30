@@ -14,7 +14,7 @@ class Header extends Component {
           <Link to="/logout" className="nav">
             Logout
           </Link>
-          <Link to="/main" className="nav">
+          <Link to="/funfact" className="nav">
             Fun Facts
           </Link>
         </div>

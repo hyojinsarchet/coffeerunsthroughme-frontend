@@ -8,6 +8,7 @@ import axios from "axios";
 import Signup from "../authentication/signup.js";
 import Signout from "../authentication/signout.js";
 import Signin from "../authentication/signin.js";
+import Funfact from "../Funfact/Funfact";
 
 class App extends Component {
   constructor(props) {
@@ -31,13 +32,15 @@ class App extends Component {
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
-    this.handleInput = this.handleInput.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleUserAuth = this.handleUserAuth.bind(this);
     this.convertCaffeine = this.convertCaffeine.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.editDrinks = this.editDrinks.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.deleteField = this.deleteField.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
   }
 
   componentDidMount() {
@@ -82,7 +85,7 @@ class App extends Component {
     });
   }
 
-  convertCaffeine(drinkType) {
+  convertCaffeine(drinkType, quantity) {
     console.log(drinkType);
     let caffeineAmount = 0;
     if (drinkType === "coffee") {
@@ -94,23 +97,43 @@ class App extends Component {
     } else if (drinkType === "energy_drink") {
       caffeineAmount = this.state.beverage.energy_drink;
     }
-    return caffeineAmount * this.state.drink.quantity;
+    return caffeineAmount * quantity;
   }
 
   editDrinks(index) {
     return e => {
       e.preventDefault();
-      console.log(this.state.drinks[index]);
+
+      const drinkToUpdate = this.state.drinks[index];
+
+      console.log("Before edit: " + drinkToUpdate);
+      drinkToUpdate[e.target.name] = e.target.value;
+
+      drinkToUpdate.calculation = this.convertCaffeine(
+        drinkToUpdate.drinkType,
+        drinkToUpdate.quantity
+      );
+      console.log("After edit: " + drinkToUpdate);
+      this.forceUpdate();
     };
+  }
+
+  deleteField(index) {
+    const deleteRow = [...this.state.drinks];
+    deleteRow.splice(index, 1);
+    this.setState({ drinks: deleteRow });
+
+    // TODO: this should delete from the database
+    //axios.delete
   }
 
   handleSubmit(e) {
     e.preventDefault();
     const newDrinks = this.state.drinks.slice();
-
     var newDrinkState = { ...this.state.drink };
     newDrinkState.calculation = this.convertCaffeine(
-      this.state.drink.drinkType
+      this.state.drink.drinkType,
+      this.state.drink.quantity
     );
 
     newDrinks.push(newDrinkState);
@@ -127,6 +150,9 @@ class App extends Component {
         calculation: ""
       }
     });
+
+    //save to the db
+    //axios.post
   }
 
   handleSignUp(e) {
@@ -160,6 +186,13 @@ class App extends Component {
       })
       .catch(err => console.log(err));
   }
+
+  submitEdit(e) {
+    e.preventDefault();
+    // method for update list to db
+    // axios.post()/put;
+  }
+
   render() {
     return (
       <Switch>
@@ -179,7 +212,9 @@ class App extends Component {
                     isLoggedIn={this.state.isLoggedIn}
                     onChange={this.handleInput}
                     editDrinks={this.editDrinks}
+                    submitEdit={this.submitEdit}
                     onSubmit={this.handleSubmit}
+                    deleteField={this.deleteField}
                   />
                 );
               }}
@@ -196,6 +231,16 @@ class App extends Component {
                       handleSignUp={this.handleSignUp}
                     />
                   );
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
+              path="/funfact"
+              render={() => {
+                if (this.state.isLoggedIn === true) {
+                  return <Funfact />;
                 } else {
                   return <Redirect to="/" />;
                 }

@@ -8,14 +8,6 @@ class Table extends Component {
     return (
       <div>
         <h1>{this.props.email}'s Daily Caffeine Intake. </h1>
-        <button
-          onClick={() => {
-            /*addField()*/
-          }}
-          className="create new"
-        >
-          + create new
-        </button>
 
         <TableProperties />
         {this.props.drinks.map((drink, index) => {
@@ -26,6 +18,8 @@ class Table extends Component {
               drink={drink}
               onChange={this.props.onChange}
               editDrinks={this.props.editDrinks}
+              deleteField={this.props.deleteField}
+              submitEdit={this.props.submitEdit}
               saved={true}
             />
           );
