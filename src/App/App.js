@@ -68,6 +68,7 @@ class App extends Component {
 
   componentDidMount() {
     axios.get("http://localhost:3001/main").then(response => {
+      console.log(response.data);
       this.setState({
         drink: response.data
       });
@@ -125,6 +126,7 @@ class App extends Component {
         calculations: 80 * this.state.quantity
       });
     }
+    axios.put(`http://localhost:3001/main/`);
   }
 
   iterator(e) {
