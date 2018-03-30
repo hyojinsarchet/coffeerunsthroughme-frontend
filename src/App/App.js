@@ -44,15 +44,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.token) {
-      this.setState({
-        isLoggedIn: true
-      });
-    } else {
-      this.setState({
-        isLoggedIn: false
-      });
-    }
     axios.get("http://localhost:3001/main").then(response => {
       console.log(response.data);
       this.setState({
