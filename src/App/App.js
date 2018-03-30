@@ -78,15 +78,6 @@ class App extends Component {
     });
   }
 
-  handleInput(e) {
-    this.setState({
-      drink: {
-        ...this.state.drink,
-        [e.target.name]: e.target.value
-      }
-    });
-  }
-
   convertCaffeine(drinkType, quantity) {
     let caffeineAmount = 0;
     if (drinkType === "Coffee") {
@@ -125,7 +116,7 @@ class App extends Component {
       deleteRow.splice(index, 1);
       this.setState({ drinks: deleteRow });
     });
-    console.log("this has been deleted");
+    console.log("this has been deleted"); //fix
   }
 
   handleSubmit(e) {
@@ -185,9 +176,12 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  submitEdit(e, id) {
-    e.preventDefault();
-    axios.put(`http://localhost:3001/main/${id}, body`);
+  submitEdit(drink) {
+    let { drinkType, quantity } = drink;
+    axios.put(`http://localhost:3001/main/${drink._id}`, {
+      drinkType,
+      quantity
+    });
   }
 
   render() {

@@ -2,6 +2,22 @@ import React, { Component } from "react";
 import "./Table.css";
 
 class TableRow extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ...this.props.drink
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
   render() {
     const onChangeFunction =
       this.props.saved === false
@@ -15,8 +31,8 @@ class TableRow extends Component {
               <select
                 className="drinks"
                 name="drinkType"
-                onChange={onChangeFunction}
-                value={this.props.drink.drinkType}
+                onChange={this.handleChange}
+                value={this.state.drinkType}
               >
                 <option value="Soda">Soda</option>
                 <option value="Coffee">Coffee</option>
@@ -26,18 +42,18 @@ class TableRow extends Component {
             </td>
             <td>
               <input
-                value={this.props.drink.quantity}
+                value={this.state.quantity}
                 name="quantity"
                 placeholder="cup"
                 type="number"
-                onChange={onChangeFunction}
+                onChange={this.handleChange}
                 className="userForm"
               />
               cup
             </td>
             <td>
               <input
-                value={this.props.drink.calculation}
+                value={this.state.calculation}
                 type="number"
                 name="mg"
                 placeholder="mg"
@@ -70,7 +86,10 @@ class TableRow extends Component {
         onSubmit={
           this.props.saved === false
             ? this.props.onSubmit
-            : this.props.submitEdit
+            : e => {
+                e.preventDefault();
+                this.props.submitEdit(this.state);
+              }
         }
       >
         {tableRow}
