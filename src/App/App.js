@@ -1,24 +1,46 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "../Header/Header";
 import Table from "../Table/Table";
 import Footer from "../Footer/Footer";
 import "./App.css";
 import axios from "axios";
+import Signup from "../authentication/signup.js";
+import Signout from "../authentication/signout.js";
+import Signin from "../authentication/signin.js";
+import Funfact from "../Funfact/Funfact";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
       password: "",
+      drinks: [],
+      drink: {
+        id: "",
+        quantity: "",
+        drinkType: "soda",
+        calculation: ""
+      },
+      beverage: {
+        coffee: 95,
+        tea: 45,
+        soda: 45,
+        energy_drink: 80
+      },
       isLoggedIn: false
     };
     this.handleLogOut = this.handleLogOut.bind(this);
-    this.handleInput = this.handleInput.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleUserAuth = this.handleUserAuth.bind(this);
+    this.convertCaffeine = this.convertCaffeine.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.editDrinks = this.editDrinks.bind(this);
+    this.deleteField = this.deleteField.bind(this);
+    this.submitEdit = this.submitEdit.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +53,12 @@ class App extends Component {
         isLoggedIn: false
       });
     }
+    axios.get("http://localhost:3001/main").then(response => {
+      console.log(response.data);
+      this.setState({
+        drinks: response.data
+      });
+    });
   }
 
   handleLogOut() {
@@ -39,12 +67,74 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     });
+
     localStorage.clear();
   }
 
-  handleInput(e) {
+  handleUserAuth(e) {
     this.setState({
       [e.target.name]: e.target.value
+    });
+  }
+
+  convertCaffeine(drinkType, quantity) {
+    let caffeineAmount = 0;
+    if (drinkType === "Coffee") {
+      caffeineAmount = this.state.beverage.coffee;
+    } else if (drinkType === "soda") {
+      caffeineAmount = this.state.beverage.soda;
+    } else if (drinkType === "tea") {
+      caffeineAmount = this.state.beverage.tea;
+    } else if (drinkType === "energy_drink") {
+      caffeineAmount = this.state.beverage.energy_drink;
+    }
+    return caffeineAmount * quantity;
+  }
+
+  editDrinks(index) {
+    return e => {
+      e.preventDefault();
+      const drinkToUpdate = this.state.drinks[index];
+      drinkToUpdate[e.target.name] = e.target.value;
+      drinkToUpdate.calculation = this.convertCaffeine(
+        drinkToUpdate.drinkType,
+        drinkToUpdate.quantity
+      );
+      this.forceUpdate();
+    };
+  }
+
+  deleteField(index, drink) {
+    axios.delete(`http://localhost:3001/main/${drink._id}`).then(res => {
+      const deleteRow = [...this.state.drinks];
+      deleteRow.splice(index, 1);
+      this.setState({ drinks: deleteRow });
+    });
+    console.log("this has been deleted");
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newDrinks = this.state.drinks.slice();
+    var newDrinkState = { ...this.state.drink };
+    newDrinkState.calculation = this.convertCaffeine(
+      this.state.drink.drinkType,
+      this.state.drink.quantity
+    );
+    axios.post("http://localhost:3001/main", newDrinkState).then(res => {
+      newDrinkState.id = res.id;
+      newDrinks.push(newDrinkState);
+      newDrinks.push(newDrinkState).then(res =>
+        this.setState({
+          ...this.state,
+          drinks: newDrinks,
+          drink: {
+            quantity: "",
+            drinkType: "soda",
+            calculation: ""
+          }
+        })
+      );
     });
   }
 
@@ -80,77 +170,108 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  submitEdit(drink) {
+    let { drinkType, quantity } = drink;
+    axios.put(`http://localhost:3001/main/${drink._id}`, {
+      drinkType,
+      quantity
+    });
+  }
+
   render() {
     return (
-      <div className="app">
-        <nav>
-          <Link to="/">Main</Link>
-          <Link to="/main">Home</Link>
-        </nav>
-        <div>
-          <Switch>
-            <Route path="/" />
-            <Route path="/main" />
-          </Switch>
-        </div>
-        <div>
-          <Header />
-          <div className="image">
-            <img src="../../images/coffee.jpg" alt="coffee" />
+      <Switch>
+        <div className="app">
+          <nav>
+            <Header isLoggedIn={this.state.isLoggedIn} />
+          </nav>
+          <div>
+            <Route
+              path="/main"
+              render={() => {
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Table
+                      drinks={this.state.drinks}
+                      email={this.state.email}
+                      drink={this.state.drink}
+                      isLoggedIn={this.state.isLoggedIn}
+                      onChange={this.handleInput}
+                      editDrinks={this.editDrinks}
+                      submitEdit={this.submitEdit}
+                      onSubmit={this.handleSubmit}
+                      deleteField={this.deleteField}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
+              path="/signup"
+              render={props => {
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signup
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleUserAuth={this.handleUserAuth}
+                      handleSignUp={this.handleSignUp}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
+              path="/funfact"
+              render={() => {
+                if (this.state.isLoggedIn === true) {
+                  return <Funfact />;
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
+              path="/logout"
+              render={props => {
+                if (this.state.isLoggedIn === true) {
+                  return (
+                    <Signout
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleLogOut={this.handleLogOut}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
+            <Route
+              path="/login"
+              render={props => {
+                if (this.state.isLoggedIn === false) {
+                  return (
+                    <Signin
+                      {...props}
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleUserAuth={this.handleUserAuth}
+                      handleLogIn={this.handleLogIn}
+                    />
+                  );
+                } else {
+                  return <Redirect to="/" />;
+                }
+              }}
+            />
           </div>
-          <Table />
           <Footer />
         </div>
-
-        <Header />
-        <Switch>
-          <Route
-            path="/main"
-            render={() => {
-              return <Table isLoggedIn={this.state.isLoggedIn} />;
-            }}
-          />
-          {/* <Route
-            path="/signup"
-            render={props => {
-              return (
-                <Signup
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleSignUp={this.handleSignUp}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/logout"
-            render={props => {
-              return (
-                <Signout
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleLogOut={this.handleLogOut}
-                />
-              );
-            }}
-          />
-          <Route
-            path="/login"
-            render={props => {
-              return (
-                <Signin
-                  {...props}
-                  isLoggedIn={this.state.isLoggedIn}
-                  handleInput={this.handleInput}
-                  handleLogIn={this.handleLogIn}
-                />
-              );
-            }}
-          /> */}
-        </Switch>
-        <Footer />
-      </div>
+      </Switch>
     );
   }
 }

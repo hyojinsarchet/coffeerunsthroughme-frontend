@@ -4,19 +4,37 @@ import "./Header.css";
 
 class Header extends Component {
   render() {
-    return (
-      <div>
-        <div className="header">
-          <h1 className="logo">
-            <a href="/">Coffee Runs Through Me</a>
-          </h1>
-          <Link to="/">Home</Link>
-          <Link to="/main" />
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
+    let nav = [];
+    if (this.props.isLoggedIn) {
+      nav.push(
+        <div key={1}>
+          <Link to="/main" className="logo">
+            Coffee Runs Through Me
+          </Link>
+          <Link to="/logout" className="nav">
+            Logout
+          </Link>
+          <Link to="/funfact" className="nav">
+            Fun Facts
+          </Link>
         </div>
-      </div>
-    );
+      );
+    } else {
+      nav.push(
+        <div key={2}>
+          <Link to="/" className="logo">
+            Coffee Runs Through Me
+          </Link>
+          <Link to="/login" className="nav">
+            Login
+          </Link>
+          <Link to="/signup" className="nav">
+            Signup?
+          </Link>
+        </div>
+      );
+    }
+    return <div className="header">{nav}</div>;
   }
 }
 
