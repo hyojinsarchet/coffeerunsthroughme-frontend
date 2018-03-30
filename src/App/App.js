@@ -19,6 +19,7 @@ class App extends Component {
       password: "",
       drinks: [],
       drink: {
+        id: "",
         quantity: "",
         drinkType: "soda",
         calculation: ""
@@ -88,7 +89,7 @@ class App extends Component {
 
   convertCaffeine(drinkType, quantity) {
     let caffeineAmount = 0;
-    if (drinkType === "coffee") {
+    if (drinkType === "Coffee") {
       caffeineAmount = this.state.beverage.coffee;
     } else if (drinkType === "soda") {
       caffeineAmount = this.state.beverage.soda;
@@ -118,8 +119,8 @@ class App extends Component {
     };
   }
 
-  deleteField(index, e) {
-    axios.delete("http://localhost:3001/main/").then(res => {
+  deleteField(index, e, id) {
+    axios.delete(`http://localhost:3001/main/${id}`).then(res => {
       const deleteRow = [...this.state.drinks];
       deleteRow.splice(index, 1);
       this.setState({ drinks: deleteRow });
@@ -130,29 +131,26 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const newDrinks = this.state.drinks.slice();
+    axios.post("http://localhost:3001/main", {
+      quantity: this.state.quantity
+    });
+
     var newDrinkState = { ...this.state.drink };
     newDrinkState.calculation = this.convertCaffeine(
       this.state.drink.drinkType,
       this.state.drink.quantity
     );
-
-    newDrinks.push(newDrinkState);
-
-    this.setState({
-      ...this.state,
-      drinks: newDrinks
-    });
-
-    this.setState({
-      drink: {
-        quantity: "",
-        drinkType: "soda",
-        calculation: ""
-      }
-    });
-
-    //save to the db
-    //axios.post
+    newDrinks.push(newDrinkState).then(res =>
+      this.setState({
+        ...this.state,
+        drinks: newDrinks,
+        drink: {
+          quantity: "",
+          drinkType: "soda",
+          calculation: ""
+        }
+      })
+    );
   }
 
   handleSignUp(e) {
@@ -187,10 +185,9 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  submitEdit(e) {
+  submitEdit(e, id) {
     e.preventDefault();
-    // method for update list to db
-    // axios.post()/put;
+    axios.put(`http://localhost:3001/main/${id}, body`);
   }
 
   render() {
