@@ -18,10 +18,10 @@ class TableRow extends Component {
                 onChange={onChangeFunction}
                 value={this.props.drink.drinkType}
               >
-                <option value="soda">Soda</option>
-                <option value="coffee">Coffee</option>
-                <option value="energy_drink">Energy Drink</option>
-                <option value="tea">Tea</option>
+                <option value="Soda">Soda</option>
+                <option value="Coffee">Coffee</option>
+                <option value="EnergyDrink">Energy Drink</option>
+                <option value="Tea">Tea</option>
               </select>
             </td>
             <td>
