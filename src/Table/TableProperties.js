@@ -7,7 +7,6 @@ class TableProperties extends Component {
       <table id="coffeetable">
         <tbody>
           <tr className="content">
-            <th>User</th>
             <th>Drink</th>
             <th>Quantity</th>
             <th>Calculations</th>

@@ -15,10 +15,7 @@ class Header extends Component {
             Logout
           </Link>
           <Link to="/funfact" className="nav">
-            Fun facts
-          </Link>
-          <Link to="/main" className="nav">
-            Test
+            Fun Facts
           </Link>
         </div>
       );
@@ -32,7 +29,7 @@ class Header extends Component {
             Login
           </Link>
           <Link to="/signup" className="nav">
-            Signup
+            Signup?
           </Link>
         </div>
       );

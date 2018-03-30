@@ -7,20 +7,28 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.email} Daily Caffeine Intake.</h1>
-        <button
-          onClick={() => {
-            /*addField()*/
-          }}
-          className="create new"
-        >
-          + create new
-        </button>
+        <h1>{this.props.email}'s Daily Caffeine Intake. </h1>
+
         <TableProperties />
+        {this.props.drinks.map((drink, index) => {
+          return (
+            <TableRow
+              key={index}
+              index={index}
+              drink={drink}
+              onChange={this.props.onChange}
+              editDrinks={this.props.editDrinks}
+              deleteField={this.props.deleteField}
+              submitEdit={this.props.submitEdit}
+              saved={true}
+            />
+          );
+        })}
         <TableRow
-          email={this.props.email}
-          quantity={this.props.quantity}
+          drink={this.props.drink}
           onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit}
+          saved={false}
         />
       </div>
     );

@@ -6,7 +6,7 @@ class Funfact extends Component {
   render() {
     const settings = {
       infinite: true,
-      speed: 4000,
+      speed: 4500,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
