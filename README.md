@@ -8,6 +8,13 @@
 * There is the Express based back-end repository [here](https://github.com/KBuck2018/coffeerunsthroughme-backend).
 * It has complete CRUD functionality implemented with RESTful routes.
 
+### How to use this application
+
+* Users can create their profiles and track of how much caffeine they consume daily.
+* Users can see their saved drinks.
+* Users can edit and delete their saved drinks.
+* Users also can see some fun facts about caffeine.
+
 ### How to run
 
 * Clone this repository and open it on local server
@@ -25,4 +32,4 @@
 
 ### The main page look
 
-![main](main page link here)
+![main](./planning/App-main.png)
