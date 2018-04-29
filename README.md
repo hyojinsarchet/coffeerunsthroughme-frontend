@@ -19,9 +19,9 @@
 
 * Clone this repository and open it on local server
   (http://localhost:3000/)
-* Click [here](deployed links here).
+* Or click [here](http://woozy-answer.surge.sh/).
 
-### Used tools in the project
+### Built with
 
 | Front-End  |
 | :--------: |
