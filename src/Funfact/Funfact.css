@@ -1,0 +1,20 @@
+.funcfact {
+  text-align: center;
+  font-family: "Special Elite", cursive;
+  border: 5px solid #4d7c26;
+  border-style: groove;
+  width: 900px;
+  height: 320px;
+  padding: 80px 50px 0 50px;
+  margin: 200px auto auto auto;
+  color: #3f2314;
+  background: #74aa2e;
+  opacity: 0.8;
+  border-radius: 10px;
+  font-size: 1.5em;
+  display: fixed;
+}
+
+.title {
+  color: white;
+}

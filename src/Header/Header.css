@@ -1,16 +1,24 @@
 .header {
   background: #d7c0aa;
-  position: fixed;
+  display: fixed;
   top: 0px;
   width: 100%;
+  font-family: "Special Elite", cursive;
+  padding: 20px 15px 10px 15px;
 }
 
 .logo {
-  font-family: "Special Elite", cursive;
+  color: #4d2713;
+  padding: 10px 5px 10px 0;
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.logo a {
+.nav {
   text-decoration: none;
+  float: right;
+  padding-right: 25px;
+  padding-top: 5px;
   color: #4d2713;
-  padding: 15px;
 }

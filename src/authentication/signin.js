@@ -1,24 +1,32 @@
 import React, { Component } from "react";
+import "./authentication.css";
 
 class Signin extends Component {
   render() {
     return (
       <div>
-        <h2>Sign In</h2>
-        <form>
+        <h1>Sign In</h1>
+        <form className="form">
           <div>
-            <label htmlFor="email">Email</label>
-            <input type="text" name="email" onChange={this.props.handleInput} />
+            <label htmlFor="email">Username </label>
+            <input
+              className="userForm"
+              type="text"
+              name="email"
+              onChange={this.props.handleUserAuth}
+            />
           </div>
           <div>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password </label>
             <input
-              type="text"
+              className="userForm"
+              type="password"
               name="password"
-              onChange={this.props.handleInput}
+              onChange={this.props.handleUserAuth}
             />
           </div>
           <input
+            className="new"
             value="Submit"
             type="submit"
             onClick={this.props.handleLogIn}

@@ -1,0 +1,76 @@
+h1 {
+  font-family: "Special Elite", cursive;
+  padding: 10px;
+  text-align: center;
+}
+
+#coffeetable {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-family: "Special Elite", cursive;
+}
+
+#coffeetable td,
+th {
+  border: 3px solid black;
+  padding: 8px;
+  width: 25%;
+}
+
+#coffeetable tr {
+  border: 3px solid black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.content {
+  background: #74aa2e;
+  color: white;
+}
+
+.userInfo {
+  background: #d1c9a1;
+  border: 3px solid black;
+}
+
+.quantity {
+  border-radius: 5px;
+  padding: 8px;
+  font-family: "Special Elite", cursive;
+}
+
+.drinks {
+  font-size: 15px;
+  padding: 8px;
+  font-family: "Special Elite", cursive;
+}
+
+.userForm {
+  border-radius: 5px;
+  padding: 10px;
+  font-family: "Special Elite", cursive;
+  font-size: 15px;
+}
+
+.new {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: "Special Elite", cursive;
+}
+
+.deleteField {
+  background: #fc363b;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: "Special Elite", cursive;
+}
+
+.create {
+  float: right;
+}
